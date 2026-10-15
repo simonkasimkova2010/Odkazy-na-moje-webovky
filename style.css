@@ -48,6 +48,15 @@ p {
   margin: 0;
 }
 
+/* všechny ikonky */
+svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .label {
   color: #c9b8ff;
   font-size: 15px;
@@ -55,7 +64,7 @@ p {
 }
 
 h1 {
-  font-size: clamp(40px, 10vw, 64px);
+  font-size: clamp(38px, 9.5vw, 60px);
   font-weight: 300;
   line-height: 1.08;
   letter-spacing: -0.02em;
@@ -123,9 +132,19 @@ h1 {
 }
 
 h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 20px;
   font-weight: 500;
   margin: 0;
+}
+
+.head-ico {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  color: #c9b8ff;
 }
 
 .badge {
@@ -196,13 +215,65 @@ h2 {
   outline: none;
 }
 
+/* kulatý podklad pod ikonkou */
 .orb {
   flex: none;
-  width: 64px;
-  height: 64px;
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #f3d5ff, #7a4df0 55%, #1b0f4a);
+  color: #fff;
+  background: radial-gradient(circle at 30% 30%, #b99cff, #6b3fe0 60%, #1b0f4a);
+}
+
+.orb .ico {
+  width: 28px;
+  height: 28px;
 }
 
 .orb-ig {
-  background: radial-grad
+  background: radial-gradient(circle at 70% 25%, #ffb07a, #e0507a 55%, #6a1f7a);
+}
+
+.orb-mail {
+  background: radial-gradient(circle at 70% 25%, #8fd8ff, #4a6df0 55%, #10184a);
+}
+
+.orb-tel {
+  background: radial-gradient(circle at 70% 25%, #8ff0c0, #2aa57a 55%, #0b3a33);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.card p {
+  color: #a79fc7;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.open {
+  flex: none;
+  margin-left: auto;
+  font-size: 14px;
+  color: #c9b8ff;
+  border: 1px solid rgba(201, 184, 255, 0.4);
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+
+@media (max-width: 480px) {
+  .open { display: none; }
+  .orb { width: 52px; height: 52px; }
+  .orb .ico { width: 24px; height: 24px; }
+  .showcase { padding: 16px; }
+  h2 { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot { animation: none; }
+}
