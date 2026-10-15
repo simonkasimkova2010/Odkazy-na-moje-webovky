@@ -20,36 +20,19 @@ main {
   padding: 48px 20px 40px;
 }
 
-img {
-  max-width: 100%;
-}
-
 p {
   margin: 0;
 }
 
 h1 {
-  font-size: clamp(34px, 8vw, 52px);
+  font-size: clamp(38px, 9vw, 56px);
   font-weight: 300;
   line-height: 1.1;
   margin: 6px 0 0;
 }
 
 .hero {
-  display: flex;
-  align-items: center;
-  gap: clamp(16px, 4vw, 28px);
-  margin-bottom: 24px;
-}
-
-.foto {
-  flex: none;
-  width: clamp(84px, 20vw, 128px);
-  height: clamp(84px, 20vw, 128px);
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center 30%;
-  box-shadow: 0 0 0 3px #c9b8ff, 0 0 40px rgba(155, 120, 255, 0.5);
+  margin-bottom: 20px;
 }
 
 .intro {
@@ -94,6 +77,12 @@ h2 {
   margin: 32px 0 8px;
 }
 
+.list {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
 .card {
   display: flex;
   align-items: center;
@@ -119,6 +108,14 @@ h2 {
   background: radial-gradient(circle at 30% 30%, #f3d5ff, #7a4df0 55%, #1b0f4a);
 }
 
+.orb-ig {
+  background: radial-gradient(circle at 70% 30%, #ffd9c9, #e0507a 55%, #3a0f2a);
+}
+
+.orb-mail {
+  background: radial-gradient(circle at 70% 30%, #c9f0ff, #4a6df0 55%, #10184a);
+}
+
 .card h3 {
   margin: 0;
   font-size: 18px;
@@ -128,4 +125,5 @@ h2 {
 .card p {
   color: #a79fc7;
   font-size: 15px;
+  overflow-wrap: anywhere;
 }
