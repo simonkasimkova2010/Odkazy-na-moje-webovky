@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Manrope", system-ui, sans-serif;
+  color: #f1edff;
+  background:
+    radial-gradient(60% 40% at 15% 0%, #1d1146, transparent 70%),
+    radial-gradient(50% 35% at 100% 55%, rgba(91, 60, 196, 0.45), transparent 70%),
+    #0c0920;
+  background-attachment: fixed;
+}
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 56px 20px 40px;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 300;
+  margin: 10px 0 16px;
+}
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 32px 0 28px;
+}
+
+.stat {
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(8px);
+}
+
+.stat small {
+  color: #a79fc7;
+  font-size: 14px;
+}
+
+.stat b {
+  display: block;
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-top: 10px;
+  color: #c9b8ff;
+}
