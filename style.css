@@ -7,28 +7,59 @@ body {
   min-height: 100vh;
   font-family: "Manrope", system-ui, sans-serif;
   color: #f1edff;
-  background:
-    radial-gradient(60% 40% at 15% 0%, #1d1146, transparent 70%),
-    radial-gradient(50% 35% at 100% 55%, rgba(91, 60, 196, 0.45), transparent 70%),
-    #0c0920;
-  background-attachment: fixed;
+  background: #0c0920;
+  overflow-x: hidden;
+}
+
+/* svítící fialové koule v pozadí */
+.glow {
+  position: fixed;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.glow-a {
+  width: 420px;
+  height: 420px;
+  top: -140px;
+  left: -120px;
+  background: #3a2088;
+  opacity: 0.7;
+}
+
+.glow-b {
+  width: 380px;
+  height: 380px;
+  bottom: -120px;
+  right: -100px;
+  background: #5b3cc4;
+  opacity: 0.45;
 }
 
 main {
   max-width: 720px;
   margin: 0 auto;
-  padding: 48px 20px 40px;
+  padding: 48px 20px 48px;
 }
 
 p {
   margin: 0;
 }
 
+.label {
+  color: #c9b8ff;
+  font-size: 15px;
+  font-weight: 500;
+}
+
 h1 {
-  font-size: clamp(38px, 9vw, 56px);
+  font-size: clamp(40px, 10vw, 64px);
   font-weight: 300;
-  line-height: 1.1;
-  margin: 6px 0 0;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 8px 0 0;
 }
 
 .hero {
@@ -42,11 +73,12 @@ h1 {
   margin-bottom: 12px;
 }
 
+/* velká čísla */
 .stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  margin: 32px 0 28px;
+  margin: 32px 0 36px;
 }
 
 .stat {
@@ -71,18 +103,78 @@ h1 {
   color: #c9b8ff;
 }
 
+/* speciální rámeček s odkazy na weby */
+.showcase {
+  padding: 22px;
+  border: 1.5px solid transparent;
+  border-radius: 28px;
+  background:
+    linear-gradient(#130d30, #130d30) padding-box,
+    linear-gradient(135deg, #c9b8ff, #7a4df0 50%, #efb9ff) border-box;
+  box-shadow: 0 0 60px rgba(122, 77, 240, 0.28);
+}
+
+.showcase-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
 h2 {
-  font-size: 19px;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.badge {
+  flex: none;
+  font-size: 13px;
+  color: #1a1038;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: linear-gradient(120deg, #c9b8ff, #efb9ff);
+}
+
+.soon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  color: #a79fc7;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.dot {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #efb9ff;
+  box-shadow: 0 0 12px #efb9ff;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* kontakt */
+.contact-title {
+  margin: 40px 0 12px;
   font-weight: 400;
-  margin: 32px 0 8px;
 }
 
 .list {
   display: grid;
   gap: 12px;
-  margin-top: 12px;
 }
 
+/* karty s odkazy */
 .card {
   display: flex;
   align-items: center;
@@ -94,10 +186,14 @@ h2 {
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.045);
   backdrop-filter: blur(8px);
+  transition: border-color 0.2s, background 0.2s;
 }
 
-.card:hover {
-  border-color: rgba(201, 184, 255, 0.55);
+.card:hover,
+.card:focus-visible {
+  border-color: rgba(201, 184, 255, 0.6);
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
 }
 
 .orb {
@@ -109,21 +205,4 @@ h2 {
 }
 
 .orb-ig {
-  background: radial-gradient(circle at 70% 30%, #ffd9c9, #e0507a 55%, #3a0f2a);
-}
-
-.orb-mail {
-  background: radial-gradient(circle at 70% 30%, #c9f0ff, #4a6df0 55%, #10184a);
-}
-
-.card h3 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.card p {
-  color: #a79fc7;
-  font-size: 15px;
-  overflow-wrap: anywhere;
-}
+  background: radial-grad
