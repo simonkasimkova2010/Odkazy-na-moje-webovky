@@ -50,6 +50,9 @@ p {
 
 /* všechny ikonky */
 svg {
+  flex: none;
+  max-width: 40px;
+  max-height: 40px;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.8;
@@ -85,9 +88,8 @@ h2 {
 }
 
 .head-ico {
-  flex: none;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   color: #c9b8ff;
 }
 
@@ -226,7 +228,7 @@ h2 {
   outline: none;
 }
 
-/* karta s hrou: obsah je vyšší, ikonka je nahoře */
+/* karta s hrou */
 .card-game {
   align-items: flex-start;
 }
@@ -238,26 +240,25 @@ h2 {
 .modes {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
   margin-top: 12px;
 }
 
 .mode {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  font-size: 13px;
+  gap: 6px;
+  font-size: 12.5px;
   line-height: 1.3;
   color: #c9b8ff;
-  padding: 6px 12px;
+  padding: 5px 10px;
   border: 1px solid rgba(201, 184, 255, 0.28);
   border-radius: 999px;
 }
 
 .mode svg {
-  flex: none;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
 }
 
 /* kulatý podklad pod ikonkou */
@@ -265,16 +266,16 @@ h2 {
   flex: none;
   display: grid;
   place-items: center;
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   color: #fff;
   background: radial-gradient(circle at 30% 30%, #b99cff, #6b3fe0 60%, #1b0f4a);
 }
 
 .orb .ico {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
 }
 
 .orb-ig {
@@ -313,8 +314,8 @@ h2 {
 
 @media (max-width: 480px) {
   .open { display: none; }
-  .orb { width: 52px; height: 52px; }
-  .orb .ico { width: 24px; height: 24px; }
+  .orb { width: 48px; height: 48px; }
+  .orb .ico { width: 22px; height: 22px; }
   .about, .showcase { padding: 16px; }
   h2 { font-size: 18px; }
 }
