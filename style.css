@@ -4,6 +4,16 @@
 
 html {
   background: #0c0920;
+  /* schová svislou lištu vpravo, scrollování funguje dál */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 body {
@@ -12,6 +22,7 @@ body {
   font-family: "Manrope", system-ui, sans-serif;
   color: #f1edff;
   overflow-x: hidden;
+  scrollbar-width: none;
 }
 
 /* proužek nahoře ukazuje, kolik stránky už jsi projela */
@@ -216,31 +227,6 @@ h2 {
   background: linear-gradient(120deg, #c9b8ff, #efb9ff);
 }
 
-.soon {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 16px;
-  color: #a79fc7;
-  font-size: 15px;
-  line-height: 1.5;
-}
-
-.dot {
-  flex: none;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #efb9ff;
-  box-shadow: 0 0 12px #efb9ff;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
 /* kontakt */
 .contact-title {
   margin: 40px 0 12px;
@@ -430,7 +416,6 @@ h2 {
 
 @media (prefers-reduced-motion: reduce) {
   h1 { animation: none; }
-  .dot { animation: none; }
   .glow { transform: none; }
   .to-top { transition: none; }
 }
