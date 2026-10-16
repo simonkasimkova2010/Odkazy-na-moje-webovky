@@ -57,7 +57,8 @@ body {
 main {
   max-width: 720px;
   margin: 0 auto;
-  padding: 48px 20px 48px;
+  /* velká spodní rezerva, aby poslední karta nikdy nezmizela pod lištou */
+  padding: 48px 20px calc(110px + env(safe-area-inset-bottom));
 }
 
 p {
@@ -82,12 +83,26 @@ svg {
   font-weight: 500;
 }
 
+/* jméno s jemným přechodem */
 h1 {
   font-size: clamp(38px, 9.5vw, 60px);
   font-weight: 300;
-  line-height: 1.08;
+  line-height: 1.12;
   letter-spacing: -0.02em;
   margin: 8px 0 0;
+  padding-bottom: 4px;
+  background: linear-gradient(100deg, #f1edff 0%, #c9b8ff 40%, #efb9ff 70%, #f1edff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shine 9s ease-in-out infinite alternate;
+}
+
+@keyframes shine {
+  from { background-position: 0% 0; }
+  to { background-position: 100% 0; }
 }
 
 .hero {
@@ -234,13 +249,14 @@ h2 {
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.045);
   backdrop-filter: blur(8px);
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color 0.2s, background 0.2s, translate 0.25s;
 }
 
 .card:hover,
 .card:focus-visible {
   border-color: rgba(201, 184, 255, 0.6);
   background: rgba(255, 255, 255, 0.08);
+  translate: 0 -3px;
   outline: none;
 }
 
@@ -320,48 +336,3 @@ h2 {
 
 .open {
   flex: none;
-  margin-left: auto;
-  font-size: 14px;
-  color: #c9b8ff;
-  border: 1px solid rgba(201, 184, 255, 0.4);
-  border-radius: 999px;
-  padding: 6px 14px;
-}
-
-/* animace při scrollování: prvky vyjedou a objeví se */
-@media (prefers-reduced-motion: no-preference) {
-  .js .reveal {
-    opacity: 0;
-    transform: translateY(34px) scale(0.98);
-    /* kdyby se skript nenačetl, obsah se po 3 s ukáže sám */
-    animation: showAnyway 0.01s 3s forwards;
-  }
-
-  .js .reveal.in {
-    opacity: 1;
-    transform: none;
-    animation: none;
-    transition:
-      opacity 0.8s ease var(--d, 0ms),
-      transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms),
-      border-color 0.2s,
-      background 0.2s;
-  }
-
-  @keyframes showAnyway {
-    to { opacity: 1; transform: none; }
-  }
-}
-
-@media (max-width: 480px) {
-  .open { display: none; }
-  .orb { width: 48px; height: 48px; }
-  .orb .ico { width: 22px; height: 22px; }
-  .about, .showcase { padding: 16px; }
-  h2 { font-size: 18px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .dot { animation: none; }
-  .glow { transform: none; }
-}
