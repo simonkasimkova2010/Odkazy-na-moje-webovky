@@ -336,3 +336,56 @@ h2 {
 
 .open {
   flex: none;
+  margin-left: auto;
+  font-size: 14px;
+  color: #c9b8ff;
+  border: 1px solid rgba(201, 184, 255, 0.4);
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+
+/* patička */
+.foot {
+  margin-top: 44px;
+  text-align: center;
+  color: #8279a8;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* tlačítko zpět nahoru */
+.to-top {
+  position: fixed;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 9;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: #1a1038;
+  cursor: pointer;
+  background: linear-gradient(120deg, #c9b8ff, #efb9ff);
+  box-shadow: 0 6px 24px rgba(122, 77, 240, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.to-top.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+/* animace při scrollování: prvky vyjedou a objeví se */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(34px) scale(0.98);
+    /* kdyby se skript nenačetl, obsah se po 3 s ukáže sám */
+    animation:
