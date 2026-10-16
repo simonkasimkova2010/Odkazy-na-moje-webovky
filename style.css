@@ -2,12 +2,15 @@
   box-sizing: border-box;
 }
 
+html {
+  background: #0c0920;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
   font-family: "Manrope", system-ui, sans-serif;
   color: #f1edff;
-  background: #0c0920;
   overflow-x: hidden;
 }
 
@@ -83,7 +86,7 @@ svg {
   font-weight: 500;
 }
 
-/* jméno s jemným přechodem */
+/* jméno */
 h1 {
   font-size: clamp(38px, 9.5vw, 60px);
   font-weight: 300;
@@ -91,13 +94,20 @@ h1 {
   letter-spacing: -0.02em;
   margin: 8px 0 0;
   padding-bottom: 4px;
-  background: linear-gradient(100deg, #f1edff 0%, #c9b8ff 40%, #efb9ff 70%, #f1edff 100%);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  animation: shine 9s ease-in-out infinite alternate;
+  color: #efe9ff;
+}
+
+/* přechod v písmu jen tam, kde ho prohlížeč umí (jinak zůstane světlé písmo) */
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  h1 {
+    background: linear-gradient(100deg, #f1edff 0%, #c9b8ff 40%, #efb9ff 70%, #f1edff 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: shine 9s ease-in-out infinite alternate;
+  }
 }
 
 @keyframes shine {
@@ -382,10 +392,36 @@ h2 {
   transform: none;
 }
 
-/* animace při scrollování: prvky vyjedou a objeví se */
-@media (prefers-reduced-motion: no-preference) {
-  .js .reveal {
-    opacity: 0;
-    transform: translateY(34px) scale(0.98);
-    /* kdyby se skript nenačetl, obsah se po 3 s ukáže sám */
-    animation:
+/* animace při scrollování:
+   třída "pre" přidává jen skript a jen prvkům pod okrajem obrazovky,
+   takže bez skriptu je všechno vidět */
+.reveal.pre {
+  opacity: 0;
+  transform: translateY(34px) scale(0.98);
+  transition:
+    opacity 0.8s ease var(--d, 0ms),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms),
+    border-color 0.2s,
+    background 0.2s,
+    translate 0.25s;
+}
+
+.reveal.pre.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 480px) {
+  .open { display: none; }
+  .orb { width: 48px; height: 48px; }
+  .orb .ico { width: 22px; height: 22px; }
+  .about, .showcase { padding: 16px; }
+  h2 { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  h1 { animation: none; }
+  .dot { animation: none; }
+  .glow { transform: none; }
+  .to-top { transition: none; }
+}

@@ -11,12 +11,10 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Simona Šimková | Moje weby">
   <meta property="og:description" content="Moje vytvořené weby a kontakt na jednom místě.">
-  <meta property="og:image" content="https://simonkasimkova2010.github.io/Odkazy-na-moje-webovky/apple-touch-icon.png">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
   <div class="progress" id="progress"></div>
@@ -24,12 +22,12 @@
   <div class="glow glow-b"></div>
 
   <main>
-    <header class="hero reveal">
+    <header class="hero">
       <p class="label">Portfolio</p>
       <h1>Simona Šimková</h1>
     </header>
 
-    <section class="about reveal" style="--d:100ms">
+    <section class="about reveal">
       <h2>
         <svg class="head-ico" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg>
         O mně
@@ -96,8 +94,8 @@
 
     <h2 class="contact-title reveal">Kontakt</h2>
 
-    <div class="list reveal">
-      <a class="card" style="--i:0" href="https://www.instagram.com/simcasimkova2/" target="_blank" rel="noopener">
+    <div class="list">
+      <a class="card reveal" href="https://www.instagram.com/simcasimkova2/" target="_blank" rel="noopener">
         <span class="orb orb-ig">
           <svg class="ico" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
         </span>
@@ -107,7 +105,7 @@
         </div>
       </a>
 
-      <a class="card" style="--i:1" href="mailto:simonkasimkova2010@seznam.cz">
+      <a class="card reveal" style="--d:120ms" href="mailto:simonkasimkova2010@seznam.cz">
         <span class="orb orb-mail">
           <svg class="ico" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>
         </span>
@@ -117,7 +115,7 @@
         </div>
       </a>
 
-      <a class="card" style="--i:2" href="tel:+420732417741">
+      <a class="card reveal" style="--d:240ms" href="tel:+420732417741">
         <span class="orb orb-tel">
           <svg class="ico" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
         </span>
@@ -137,37 +135,48 @@
 
   <script>
     (function () {
-      var els = document.querySelectorAll('.reveal');
+      var doc = document.documentElement;
       var bar = document.getElementById('progress');
       var toTop = document.getElementById('toTop');
+      var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
       var busy = false;
 
       function showAll() {
         els.forEach(function (e) { e.classList.add('in'); });
       }
 
-      if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (en) {
-            if (en.isIntersecting) {
-              en.target.classList.add('in');
-              io.unobserve(en.target);
+      /* Skript schová jen to, co je pod okrajem obrazovky.
+         Všechno ostatní zůstává vidět. Při chybě se vše ukáže. */
+      try {
+        var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if ('IntersectionObserver' in window && !calm) {
+          var vh = window.innerHeight;
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting) {
+                en.target.classList.add('in');
+                io.unobserve(en.target);
+              }
+            });
+          }, { rootMargin: '0px 0px -8% 0px' });
+
+          els.forEach(function (e) {
+            if (e.getBoundingClientRect().top > vh * 0.92) {
+              e.classList.add('pre');
+              io.observe(e);
             }
           });
-        }, { threshold: 0, rootMargin: '0px 0px -6% 0px' });
-        els.forEach(function (e) { io.observe(e); });
-      } else {
-        showAll();
+        }
+      } catch (err) {
+        els.forEach(function (e) { e.classList.remove('pre'); });
       }
 
       function update() {
-        var doc = document.documentElement;
         var h = doc.scrollHeight - window.innerHeight;
         var y = window.scrollY;
         bar.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
         doc.style.setProperty('--sy', y + 'px');
         toTop.classList.toggle('show', y > 500);
-        // když dojedeš úplně dolů, ukáže se všechno (i telefon)
         if (h > 0 && y >= h - 8) { showAll(); }
         busy = false;
       }
