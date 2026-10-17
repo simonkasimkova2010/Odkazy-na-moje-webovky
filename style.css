@@ -393,11 +393,31 @@ h2 {
 }
 
 @media (max-width: 480px) {
-  .open { display: none; }
   .orb { width: 48px; height: 48px; }
   .orb .ico { width: 22px; height: 22px; }
   .about, .showcase { padding: 16px; }
   h2 { font-size: 18px; }
+
+  /* tlačítko pod textem přes celou šířku karty */
+  .card-game {
+    flex-wrap: wrap;
+  }
+
+  .card-game .card-text {
+    flex: 1;
+  }
+
+  .card-game .open {
+    flex: 1 1 100%;
+    margin-left: 0;
+    padding: 12px 14px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1038;
+    border: 0;
+    background: linear-gradient(120deg, #c9b8ff, #efb9ff);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
